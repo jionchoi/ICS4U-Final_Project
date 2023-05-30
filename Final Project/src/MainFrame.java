@@ -7,6 +7,7 @@ public class MainFrame extends JFrame implements ActionListener {
     public int width = 400;
     public int height = 400;
     public static StudentInfo info;
+    public static Tournament tournament;
     /** Method Name: MainFrame
      * @Author NAME: Jion Choi
      * @Modified: May 18th 2023
@@ -16,14 +17,15 @@ public class MainFrame extends JFrame implements ActionListener {
      * Dependencies: N/A
      * Throws/Exceptions: N/A
      */
-    public MainFrame()
-    {
+    public MainFrame() {
+        super("Main Page");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //Get a image(Broncos main image)
         ImageIcon image = new ImageIcon("banting.png");
 
         //Setting the background
         JLabel background = new JLabel(image);
-        background.setBounds(0, 0, width, height);
+        background.setSize(400,400);
         getLayeredPane().add(background, Integer.MAX_VALUE);
 
         //Organize content pane
@@ -36,14 +38,14 @@ public class MainFrame extends JFrame implements ActionListener {
 
         //Add Labelled input fields to display
         JPanel inFieldPane = new JPanel();
-        inFieldPane.setLayout(new GridLayout(2,1));
+        inFieldPane.setLayout(new GridLayout(3,1));
         inFieldPane.add(new JLabel("Welcome to Ball Bricks Game!"));
         pane.add(inFieldPane,BorderLayout.NORTH);
 
         //Add submission button
         JPanel submitPane = new JPanel();
         submitPane.setLayout(new FlowLayout());
-        JButton submitButton = new JButton("Student information");
+        JButton submitButton = new JButton("Student Information");
         JButton tuto = new JButton("Tournament");
 
         //This statement tells java to listen to the button
@@ -61,7 +63,14 @@ public class MainFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        info = new StudentInfo();
+        if(e.getActionCommand().equals("Student Information")) {
+            info = new StudentInfo();
+            this.setVisible(false);
+        }
+        else if(e.getActionCommand().equals("Tournament")){
+            tournament = new Tournament();
+            this.setVisible(false);
+        }
     }
 }
 
