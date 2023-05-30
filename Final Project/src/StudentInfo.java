@@ -5,9 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StudentInfo extends JFrame implements ActionListener {
+    public MainFrame mainFrame;
     public addPlayer addPlayer;
     public searchPlayer searchPlayer;
     public StudentInfo(){
+        super("Student Information");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel pane = new JPanel();
         pane.setSize(400,400);
         pane.setLayout(new BorderLayout());
@@ -16,7 +19,7 @@ public class StudentInfo extends JFrame implements ActionListener {
 
         //Add Labelled input fields to display
         JPanel inFieldPane = new JPanel();
-        inFieldPane.setLayout(new GridLayout(3,1));
+        inFieldPane.setLayout(new FlowLayout());
         inFieldPane.add(new JLabel("Welcome to Ball Bricks Game!"));
         pane.add(inFieldPane,BorderLayout.NORTH);
 
@@ -48,6 +51,10 @@ public class StudentInfo extends JFrame implements ActionListener {
         }
         else if(e.getActionCommand().equals("Search Student")){
             searchPlayer = new searchPlayer();
+            this.setVisible(false);
+        }
+        else if(e.getActionCommand().equals("Back")){
+            mainFrame = new MainFrame();
             this.setVisible(false);
         }
     }
